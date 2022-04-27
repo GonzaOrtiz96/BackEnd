@@ -1,4 +1,5 @@
 const express = require('express')
+const Contenedor = require('./Contenedor.js')
 const app = express()
 
 const PORT = 8080
@@ -13,12 +14,19 @@ app.get('/', (req, res) => {
     res.send('<h1>Bienvenidos al Servidor express</h1>')
 })
 
-let cantVisitas = 0
-app.get('/visitas', (req, res) => {
-    cantVisitas++
-    res.send(`cantidad de visitas es ${cantVisitas}`)
+const archivo = new Contenedor('./productos.txt')
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+app.get('/productos', (req, res) => {
+    aux = archivo.getAll()
+    res.send(`el archivo ${aux}`)
 })
 
-app.get('/fyh', (req, res) => {
-    res.send({fechayhora: new Date().toLocaleString()})
+app.get('/productosRandom', (req, res) => {
+    aux = archivo.getAll()
+    aux2 = archivo.getById(getRandomInt(1, aux.length+1))
+    res.send(`archivo aleatoreo ${aux2}`)
 })
