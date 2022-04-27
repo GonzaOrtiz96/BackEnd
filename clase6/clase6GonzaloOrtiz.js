@@ -21,12 +21,12 @@ function getRandomInt(min, max) {
 }
 
 app.get('/productos', (req, res) => {
-    aux = archivo.getAll()
+    const aux = archivo.getAll()
     res.send(`el archivo ${aux}`)
 })
 
 app.get('/productosRandom', (req, res) => {
-    aux = archivo.getAll()
-    aux2 = archivo.getById(getRandomInt(1, aux.length+1))
+    const aux = archivo.getAll()
+    const aux2 = archivo.getById(getRandomInt(1, aux.length+1))
     res.send(`archivo aleatoreo ${aux2}`)
 })
