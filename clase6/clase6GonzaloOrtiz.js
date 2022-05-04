@@ -20,13 +20,13 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-app.get('/productos', (req, res) => {
-    const aux = archivo.getAll()
-    res.send(`el archivo ${aux}`)
+app.get('/productos', async(req, res) => {
+    const prods = await archivo.getAll()
+    res.send(`el archivo ${prods}`)
 })
 
-app.get('/productosRandom', (req, res) => {
-    const aux = archivo.getAll()
-    const aux2 = archivo.getById(getRandomInt(1, aux.length+1))
-    res.send(`archivo aleatoreo ${aux2}`)
+app.get('/productosRandom', async(req, res) => {
+    const prods = await archivo.getAll()
+    const random = parseInt(Math.random()*prods.length)
+    res.send(`archivo aleatoreo ${prods[random]}`)
 })

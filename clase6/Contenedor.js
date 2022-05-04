@@ -1,4 +1,6 @@
 const fs = require('fs');
+const express = require('express')
+const app = express()
 
 class Contenedor {
     constructor(archivo) {
@@ -30,8 +32,8 @@ class Contenedor {
         })
     }
 
-    getById(numero){
-        const item = fs.readFile(`${this.archivo}`, 'utf-8', function(err, contenido){
+    async getById(numero){
+        const item = await fs.readFile(`${this.archivo}`, 'utf-8', function(err, contenido){
             if (err) {
                 console.log('error al leer el archivo', err)
             } else {
@@ -40,25 +42,27 @@ class Contenedor {
                 console.log(objeto == undefined)
                 if (objeto === undefined) {
                     console.log('entro')
-                    return null
+                    item = null
                 } else {
                     console.log('no')
-                    return objeto
+                    item = objeto
                 }
             }
         })
         return item
     }
 
-    getAll(){
-        fs.readFile(`${this.archivo}`, "utf-8", (err, contenido) => {
+    async getAll(){
+        const item = await fs.readFile(`${this.archivo}`, "utf-8", async(err, contenido) => {
             if (err) {
                 console.log('error al leer el archivo', err)
             } else {
                 console.log(JSON.parse(contenido))
-                return JSON.parse(contenido)
+                const item = await JSON.parse(contenido)
+                return item
             }
         })
+        return item
     }
 
     deleteById(numero){
