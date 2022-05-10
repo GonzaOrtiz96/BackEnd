@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./clase8.js"></script>
+    <script src="./Api.js"></script>
+</head>
+<body>
+    <form id="post"method="post">
+        <input id="title" type="text" placeholder="Ingrese el titulo del producto">
+        <input type="number" placeholder="Ingrese el precio del producto">
+        <input type="text" placeholder="ingrese la URL de la foto">
+        <button type="submit" onclick="">Enviar</button>
+    </form>
+    <input id="id" type="number" placeholder="ingrese el ID del elemento que quiere editar">
+    <button id="buttomPUT" onclick="modify()">modificar</button>
+    <button id="buttomDELETE" onclick="deleteById(id)">eliminar</button>
+
+</body>
+</html>

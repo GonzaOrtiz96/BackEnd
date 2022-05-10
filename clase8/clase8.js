@@ -30,6 +30,8 @@ const upload = multer({storage: storage})
 const routerProductos = new Router()
 routerProductos.use(express.json())
 
+
+//obtener todos
 routerProductos.get('/', (req, res) => {
     res.json(archivo.getAll())
 })
@@ -37,7 +39,7 @@ routerProductos.get('/', (req, res) => {
 // productosPOST
 
 routerProductos.post('/', (req, res) => {
-    archivo.save(req.form)
+    archivo.save(req.form.post)
     res.json(archivo)
 })
 
@@ -51,7 +53,7 @@ routerProductos.get('/', (req, res) => {
 //ProductosPUT
 routerProductos.put('/', (req, res) =>{
     const id = req.id
-    res.json(archivo.modify(req.form, id))
+    res.json(archivo.modify(req.form.put, id))
 })
 
 //productosDELETE
@@ -66,7 +68,7 @@ routerProductos.delete('/', (req, res) => {
 //carga de routers
 
 app.use('/api/productos', routerProductos)
-app.use(`/api/productos/:${id}`, routerProductos)
+app.use(`:id`, routerProductos)
 
 
 //server 
